@@ -1,0 +1,35 @@
+<div class="buttonComponent">
+   <label>
+      Active Folder:
+      <select [(ngModel)]="activeFolder">
+         <option *ngFor="let val of buttonSets; let i = index" [value]="i">{{ i }}</option>
+      </select>
+   </label>
+   <ul class="buttonSet">
+      <li *ngFor="let button of buttonSets[activeFolder]" (click)="selectButton(button)" class="button"
+          [class.selected]="button === selectedButton">
+         <img *ngIf="button.image != 'missing.png'" width="60" src="file:///{{ button.image }}"/>
+         <img *ngIf="button.image == 'missing.png'" width="60" src="assets/img/missing.png"/>
+         <img class="badge button-{{button.type}}"/>
+      </li>
+   </ul>
+</div>
+<div *ngIf="selectedButton.id != -1" class="detailsPane">
+   <app-details-pane [(activeButton)]="selectedButton" [activeFolder]="activeFolder"
+                     (activeFolderUpdate)="activeFolder = $event"></app-details-pane>
+   <app-action-details-pane [(activeButton)]="selectedButton"></app-action-details-pane>
+</div>
+
+<label class="hidden-input">
+   <span class="button button-load">
+      Import Settings
+   </span>
+   <input type="file" id="filePicker2" (change)="handleFileSelect($event)" [value]="selectedButtonFile"
+          accept=".txt,.json">
+</label>
+<span class="button button-export" (click)="exportButtons()">
+   Export Settings
+</span>
+<span class="button button-save" (click)="saveButtons()">
+   Save Settings
+</span>

@@ -1,0 +1,21 @@
+<!--<div *ngIf="activeButton != null && (activeButton.id != 0 || activeFolder == 0)">-->
+<!--<label>-->
+<!--<ul class="buttonTypes">-->
+<!--<li *ngFor="let n of keys(); let i = index" [class.selected]="activeButton.type == i"><label (click)="changeButtonType(i)">{{ n }}</label></li>-->
+<!--</ul>-->
+<!--</label>-->
+<!--<div *ngIf="activeButton.type == 3" class="button button-folder-open" (click)="changeFolder()">Open Folder</div>-->
+
+<!--</div>-->
+<div *ngIf="activeButton.id == 0 && activeFolder != 0">
+   <div *ngIf="activeButton.type == 3" class="button button-folder-open" (click)="changeFolder()">
+      Return to Main Folder
+   </div>
+</div>
+
+<label class="hidden-input">
+   <span class="button button-save">
+      Image:
+   </span>
+   <input type="file" id="filePicker" (change)="handleFileSelect($event)" [value]="selectedImageFile" accept=".bmp,.png,.jpg">
+</label>

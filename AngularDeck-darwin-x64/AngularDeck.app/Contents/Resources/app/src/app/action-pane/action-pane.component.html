@@ -1,0 +1,62 @@
+<div class="actionPane">
+   <span class="listTitle">Deck Actions</span>
+   <ul>
+      <li *ngFor="let action of deck"
+          class="draggable"
+          (click)="updateAction(action)"
+          [class.selected]="activeButton.action.func == action.func"
+          [dragDirective]='action'
+          [dragHightlight]="'highlight'"
+          (releaseDrop)="releaseDrop($event)"
+          (startDrag)="startDrag(action)">
+         {{ action.name }}
+      </li>
+   </ul>
+   <span class="listTitle">Twitch Actions</span>
+   <ul>
+      <li *ngFor="let action of twitch"
+          class="draggable"
+          (click)="updateAction(action)"
+          [class.selected]="activeButton.action.func == action.func"
+          [dragDirective]='action'
+          [dragHightlight]="'highlight'"
+          (releaseDrop)="releaseDrop($event)"
+          (startDrag)="startDrag(action)">
+         {{ action.name }}
+      </li>
+   </ul>
+   <span class="listTitle">OBS Actions</span>
+   <ul>
+      <li *ngFor="let action of obs"
+          class="draggable" (click)="updateAction(action)" [class.selected]="activeButton.action.func == action.func"
+          [dragDirective]='action'
+          [dragHightlight]="'highlight'"
+          (releaseDrop)="releaseDrop($event)"
+          (startDrag)="startDrag(action)">
+         {{ action.name }}
+      </li>
+   </ul>
+   <span class="listTitle">Media Actions</span>
+   <ul>
+      <li *ngFor="let action of media"
+          class="draggable" (click)="updateAction(action)" [class.selected]="activeButton.action.func == action.func"
+          [dragDirective]='action'
+          [dragHightlight]="'highlight'"
+          (releaseDrop)="releaseDrop($event)"
+          (startDrag)="startDrag(action)">
+         {{ action.name }}
+      </li>
+   </ul>
+   <span class="listTitle">System Actions</span>
+   <ul>
+      <li *ngFor="let action of sys"
+          class="draggable" (click)="updateAction(action)" [class.selected]="activeButton.action.func == action.func"
+          [dragDirective]='action'
+          [dragHightlight]="'highlight'"
+          (releaseDrop)="releaseDrop($event)"
+          (startDrag)="startDrag(action)">
+         {{ action.name }}
+      </li>
+   </ul>
+   <span>(Drag and drop)</span>
+</div>

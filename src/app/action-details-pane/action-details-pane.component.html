@@ -1,0 +1,69 @@
+<div class="action-container droppable"
+     dropDirective
+     (dropEvent)="addDropItem($event)"
+     (dropEventMouse)="dropEventMouse($event)"
+     (dragenterEvent)="dragEnter($event)"
+     [dropHighlight]="'highlight'"
+     (dragoverMouseEvent)="dragoverMouse($event)">
+   <label class="label-header">Button Actions</label>
+   <div class="container-inner">
+      <div class="action" *ngFor="let action of activeButton.actions; let id = index">
+         <label class="action-name">
+            {{action.name}}
+            <span class="float-right button-ui button-delete" (click)="removeAction(id)">
+               <i class="fa fa-trash"></i>
+            </span>
+         </label>
+         <div class=".action-data" [ngSwitch]="action.func">
+            <!--  These are the function names from const-actions.ts  -->
+            <ng-template ngSwitchCase="twitch_custom_message">
+               <label>
+                  Message:
+                  <input [(ngModel)]="action.message">
+               </label>
+            </ng-template>
+            <ng-template ngSwitchCase="obs_change_scene">
+               <label>
+                  Scene:
+                  <select [(ngModel)]="action.scene">
+                     <option *ngFor="let scene of obs._sceneList" value="scene.name">{{scene.name}}</option>
+                  </select>
+               </label>
+            </ng-template>
+            <ng-template ngSwitchCase="obs_toggle_source">
+               <label>
+                  Source:
+                  <select [(ngModel)]="action.source">
+                     <option *ngFor="let source of obs._sourcesList" value="scene.name">{{source.name}}</option>
+                  </select>
+               </label>
+            </ng-template>
+            <ng-template ngSwitchCase="deck_delay">
+               <label>
+                  Timeout in ms:
+                  <input [(ngModel)]="action.timeout">
+               </label>
+            </ng-template>
+            <ng-template ngSwitchCase="deck_toggle">
+               <label>
+                  Toggled Image:
+                  <!--<img-picker></img-picker>-->
+               </label>
+            </ng-template>
+            <ng-template ngSwitchCase="deck_toggle_group">
+               <label>
+                  Toggled Image:
+                  <!--<img-picker></img-picker>-->
+               </label>
+               <label>
+                  Button Group:
+                  <!--<group-picker></group-picker>-->
+               </label>
+            </ng-template>
+            <ng-template ngSwitchDefault>
+
+            </ng-template>
+         </div>
+      </div>
+   </div>
+</div>

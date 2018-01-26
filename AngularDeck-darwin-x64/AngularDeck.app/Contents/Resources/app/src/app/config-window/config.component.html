@@ -1,0 +1,35 @@
+<div>
+   <label>
+      <span>
+         Channel Name:
+      </span>
+      <input [(ngModel)]="config.channelName">
+   </label>
+   <label>
+      <span>
+         Arduino Port:
+      </span>
+      <input [(ngModel)]="config.arduinoPort">
+   </label>
+   <label>
+      <span>
+         Twitch Chat Key:
+      </span>
+      <input [(ngModel)]="config.twitchChatKey" type="password">
+   </label>
+   <label>
+      <span>
+         OBS Host:
+      </span>
+      <input [(ngModel)]="config.obsHost" (change)="updateOBS()">
+   </label>
+   <label>
+      <span>
+         OBS Password:
+      </span>
+      <input [(ngModel)]="config.obsPass" (change)="updateOBS()" type="password">
+   </label>
+   <label>
+      <button (click)="saveConfig()">Save Configuration</button>
+   </label>
+</div>

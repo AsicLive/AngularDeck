@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'Bitstream';
+    src:url('/assets/fonts/Bitstream-Vera-Sans-Mono-Bold.ttf.woff') format('woff'),
+    url('/assets/fonts/Bitstream-Vera-Sans-Mono-Bold.ttf.svg#Bitstream-Vera-Sans-Mono-Bold') format('svg'),
+    url('/assets/fonts/Bitstream-Vera-Sans-Mono-Bold.ttf.eot'),
+    url('/assets/fonts/Bitstream-Vera-Sans-Mono-Bold.ttf.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+nav {
+    max-width: 640px;
+    display: block;
+    margin: 8px auto 16px;
+}
+
+nav a {
+    background: rgb(135, 172, 183);
+    border-radius: 4px;
+    margin: 0px 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background: rgba(148, 185, 196, 0.85);
+}
+
+nav a:visited {
+    color: white;
+}
+
+h1 {
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+
+h1 span {
+    color: #00979d;
+    font-family: 'Bitstream';
+}

@@ -1,0 +1,98 @@
+    ws;
+    _sceneList = null;
+    _nextId = 1;
+    _messageIdList = [];
+
+    constructor() {
+    }
+
+    connect(url, password) {
+        this.ws = new $WebSocket("ws://" + url + ":4444");
+
+        if (!this.ws._connected) {
+            console.log("Not Connected");
+        }
+
+        const auth = this.getAuthRequired();
+
+        if (!auth.authRequired) {
+            this.ws.emit('AuthenticationSuccess');
+            console.log("Auth Not Required");
+        }
+
+        try {
+            this.ws.send('Authenticate', {
+                auth: this.makeHash(auth.salt, auth.challenge, password)
+            });
+        } catch (e) {
+            console.log('Authentication Failure %o', e);
+            this.ws.emit('AuthenticationFailure');
+            throw e;
+        }
+
+        console.log(this.ws);
+        return of(true);
+    }
+
+    getAuthRequired() {
+        var auth = {authRequired: false, salt: '1', challenge: '1'};
+
+        this.ws.send({'message-id': this.generateMessageId(), 'request-type': "GetAuthRequired"}).subscribe(
+            (msg)=> {
+                console.log("::next", msg.data);
+            },
+            (msg)=> {
+                console.log("::error", msg);
+            },
+            ()=> {
+                console.log("::complete");
+            }
+        );
+
+        return auth;
+    }
+
+    loadLists() {
+        this.ws.getSceneList();
+    }
+
+    handleResponse(msg) {
+        console.log(msg);
+    }
+
+    getSceneList() {
+        let messageId = this.generateMessageId();
+        this.ws.send({'message-id': messageId, 'request-type': "GetSceneList"}).subscribe(
+            (msg)=> {
+                console.log("::next", msg.data);
+            },
+            (msg)=> {
+                console.log("::error", msg);
+            },
+            ()=> {
+                console.log("::complete");
+            }
+        );
+    }
+
+    getSourceList() {
+
+    }
+
+    makeHash(salt = '', challenge = '', msg) {
+        const hash = new shajs()
+            .update(msg)
+            .update(salt)
+            .digest('base64');
+
+        const resp = new shajs()
+            .update(hash)
+            .update(challenge)
+            .digest('base64');
+
+        return resp;
+    }
+
+    generateMessageId() {
+        return this._nextId++;
+    }
