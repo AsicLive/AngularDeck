@@ -37,6 +37,7 @@
     "electron-reload": "^1.2.2",
     "electron-squirrel-startup": "^1.0.0",
     "electron-webpack": "^1.11.0",
+    "elgato-stream-deck": "^2.0.0",
     "es7-reflect-metadata": "^1.6.0",
     "font-awesome": "^4.7.0",
     "jimp": "^0.2.28",
