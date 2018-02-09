@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ElectronService } from "ngx-electron";
+import { ElectronService } from 'ngx-electron';
 
 @Injectable()
 export class KeysenderService {
@@ -9,7 +9,7 @@ export class KeysenderService {
   constructor(
      public electronService: ElectronService
   ) {
-    this.ks = electronService.remote.require("node-key-sender");
+    this.ks = electronService.remote.require('node-key-sender');
   }
 
 }

@@ -3,8 +3,7 @@
 </h2>
 <div class="buttonComponent">
    <ul class="buttonSet">
-      <li *ngFor="let button of buttons" (click)="doAction(button)" class="button"
-          [class.selected]="button === selectedButton">
+      <li *ngFor="let button of buttons" (click)="doAction(button)" class="button">
          <img *ngIf="button.image != 'missing.png'" width="60" src="file:///{{ button.image }}"/>
          <img *ngIf="button.image == 'missing.png'" width="60" src="/assets/img/missing.png"/>
          <img class="badge button-{{button.type}}"/>

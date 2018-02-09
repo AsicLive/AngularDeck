@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs/Observable";
-import {Button} from "./button";
-import {ButtonType} from "./button-type";
-import {FilesysService} from "./filesys.service";
-import {ElectronService} from "ngx-electron";
+import {Observable} from 'rxjs/Observable';
+import {Button} from './button';
+import {ButtonType} from './button-type';
+import {FilesysService} from './filesys.service';
+import {ElectronService} from 'ngx-electron';
 
 @Injectable()
 export class ButtonService {
     // Inject HttpClient into your component or service.
-    FILE_NAME = "layout.json";
+    FILE_NAME = 'layout.json';
 
-    private readonly URL = "http://localhost:4200/";
+    private readonly URL = 'http://localhost:4200/';
     private buttonResponse: Observable<Button[][]>;
     public folder = 0;
     public buttonSets: Button[][] = [[]];
@@ -18,7 +18,7 @@ export class ButtonService {
 
     constructor(private filesys: FilesysService,
                 private electron: ElectronService) {
-        var fs = this.electron.remote.require("fs");
+        var fs = this.electron.remote.require('fs');
 
         try {
             this.buttonSets = JSON.parse(fs.readFileSync(this.filesys.getPath(this.FILE_NAME)));

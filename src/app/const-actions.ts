@@ -1,4 +1,4 @@
-import { DeckAction } from "./deck-action";
+import { DeckAction } from './deck-action';
 
 export const DECK_SET: DeckAction[] = [
    // {name: 'Toggle On/Off', func: 'deck_toggle'},

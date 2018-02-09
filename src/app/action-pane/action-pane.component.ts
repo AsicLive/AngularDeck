@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DECK_SET, MEDIA_SET, OBS_SET, SYS_SET, TWITCH_SET} from "../const-actions";
-import {Button} from "../button";
+import {DECK_SET, MEDIA_SET, OBS_SET, SYS_SET, TWITCH_SET} from '../const-actions';
+import {Button} from '../button';
 
 @Component({
     selector: 'app-action-pane',
@@ -26,7 +26,6 @@ export class ActionPaneComponent implements OnInit {
     }
 
     updateAction(action) {
-        this.activeButton.action = JSON.parse(JSON.stringify(action));
         this.activeButtonUpdate.emit(this.activeButton);
     }
 

@@ -1,22 +1,22 @@
 import {Injectable} from '@angular/core';
-import {Configuration} from "./configuration";
-import {FilesysService} from "./filesys.service";
-import {ElectronService} from "ngx-electron";
+import {Configuration} from './configuration';
+import {FilesysService} from './filesys.service';
+import {ElectronService} from 'ngx-electron';
 
 @Injectable()
 export class ConfigurationService {
 
-    FILE_NAME = "config.json";
+    FILE_NAME = 'config.json';
 
     private URL = 'http://localhost:4200';
     public config: Configuration;
 
     constructor(private filesys: FilesysService,
                 private electron: ElectronService) {
-        var fs = this.electron.remote.require('fs');
+        const fs = this.electron.remote.require('fs');
         this.config = new Configuration();
-        //this.config = require("config.json");
-        //this.save();
+        // this.config = require('config.json');
+        // this.save();
         try {
             this.config = JSON.parse(fs.readFileSync(this.filesys.getPath(this.FILE_NAME)));
         } catch(e) {
@@ -39,7 +39,7 @@ export class ConfigurationService {
     }
 
     public save() {
-        var fs = this.electron.remote.require('fs');
+        const fs = this.electron.remote.require('fs');
         try {
             fs.writeFileSync(this.filesys.getPath(this.FILE_NAME), JSON.stringify(this.config));
         } catch (e) {

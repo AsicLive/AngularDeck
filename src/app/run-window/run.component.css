@@ -1,121 +1,136 @@
 .buttonComponent {
-    max-width: 350px;
-    margin: 0 auto;
-    float: left;
-    padding: 2px;
-    box-sizing: border-box;
+  max-width: 350px;
+  margin: 0 auto;
+  float: left;
+  padding: 2px;
+  box-sizing: border-box;
 }
 
 .buttonSet {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 li.button {
-    position: relative;
-    width: 64px;
-    height: 64px;
-    box-sizing: border-box;
-    border: 2px solid white;
-    margin-bottom: 5px;
-    border-radius: 2px;
-    cursor: pointer;
+  position: relative;
+  width: 64px;
+  height: 64px;
+  box-sizing: border-box;
+  border: 2px solid white;
+  margin-bottom: 5px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+li.button.click {
+  animation-duration: 1s;
+  animation-name: red-border;
+}
+
+@keyframes red-border {
+  0% {
+    border-color: red;
+  }
+  6% {
+    border-color: red;
+  }
+  100% {
+    border-color: white;
+  }
 }
 
 .badge {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 16px;
-    width: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1px;
-    background-color: gray;
-    background-position: center center;
-    background-size: contain;
-    background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1px;
+  background: gray center center no-repeat;
+  background-size: contain;
 }
 
 .badge.button-0 {
-    background-image: url('/assets/img/toggle-off.png');
+  background-image: url('/assets/img/toggle-off.png');
 }
 
 .badge.button-1 {
-    background-image: url('/assets/img/toggle-on.png');
+  background-image: url('/assets/img/toggle-on.png');
 }
 
 .badge.button-2 {
-    background-image: url('/assets/img/play-circle-o.png');
+  background-image: url('/assets/img/play-circle-o.png');
 }
 
 .badge.button-3 {
-    background-image: url('/assets/img/folder-open-o.png');
+  background-image: url('/assets/img/folder-open-o.png');
 }
 
 .badge.button-4 {
-    background-color: #e8001d;
+  background-color: #e8001d;
 }
 
 .badge.button-5 {
-    background-color: #0046ff;
+  background-color: #0046ff;
 }
 
 .badge.button-6 {
-    background-color: #1d8000;
+  background-color: #1d8000;
 }
 
 .badge.button-7 {
-    background-color: #fff200;
+  background-color: #fff200;
 }
 
 .button.selected {
-    border: 2px solid red;
+  border: 2px solid red;
 }
 
 span.button {
-    cursor: pointer;
-    display: inline-block;
-    padding: 4px 10px;
-    margin-top: 4px;
-    border-radius: 4px;
-    color: white;
+  cursor: pointer;
+  display: inline-block;
+  padding: 4px 10px;
+  margin-top: 4px;
+  border-radius: 4px;
+  color: white;
 }
 
 .button-load {
-    background: #ca952e;
+  background: #ca952e;
 }
 
 .button-export {
-    background: #94b9c4;
+  background: #94b9c4;
 }
 
 .button-save {
-    background: #88c494;
+  background: #88c494;
 }
 
 .button-save a {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
 
 .hidden-input input {
-    display: none;
+  display: none;
 }
 
 .detailsPane {
-    width: 350px;
-    min-height: 220px;
-    float: left;
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(0, 0, 0, 0.45);
-    padding: 6px;
-    box-sizing: border-box;
+  width: 350px;
+  min-height: 220px;
+  float: left;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  padding: 6px;
+  box-sizing: border-box;
 }
