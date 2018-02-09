@@ -8,6 +8,7 @@ export class Button {
     image: string;
     imageBase64: string;
     actions: DeckAction[];
+    state: any = 'small';
 
     constructor(set, id) {
         this.set = set;

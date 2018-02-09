@@ -2,7 +2,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxElectronModule} from 'ngx-electron';
 import {DragDropDirectiveModule} from 'angular4-drag-drop';
 
@@ -54,8 +53,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     NgxElectronModule,
-    DragDropDirectiveModule,
-    BrowserAnimationsModule
+    DragDropDirectiveModule
   ],
   providers: [
     ButtonService,

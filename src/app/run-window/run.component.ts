@@ -1,5 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {trigger, state, style, transition, animate, keyframes} from '@angular/animations';
+import {Component, OnInit, OnDestroy, Renderer2} from '@angular/core';
 import {ButtonService} from '../button.service';
 import {Configuration} from '../configuration';
 import {ConfigurationService} from '../configuration.service';
@@ -26,26 +25,14 @@ export class RunComponent implements OnInit, OnDestroy {
   queuedActions = [];
   lastIndex = 0;
 
-  animations = [
-    trigger('buttonClick', [
-      state('small', style({
-        animation-duration: 1s;
-  animation-name: red-border;
-      })),
-      state('large', style({
-        animation-duration: 1s;
-animation-name: red-border;
-      })),
-    ]),
-  ];
-
   constructor(public twitchService: TwitchService,
               public buttonService: ButtonService,
               public configService: ConfigurationService,
               public electronService: ElectronService,
               public obs: ObsWebsocketService,
               public ks: KeysenderService,
-              public router: Router) {
+              public router: Router,
+              public renderer: Renderer2) {
     this.buttons = this.buttonService.getCurrentFolder();
     this.config = this.configService.getConfig();
   }
@@ -65,8 +52,13 @@ animation-name: red-border;
 
   }
 
-  doAction(button: Button) {
+  doAction(button: Button, event) {
     const that = this;
+
+    const target = event.target || event.srcElement || event.currentTarget;
+    this.renderer.addClass(target.parentElement, 'clicked');
+    window.setTimeout(function() { that.renderer.removeClass(target.parentElement, 'clicked'); }, 300);
+    console.log(target);
 
     button.actions.forEach(function (elem, index) {
       const fn = that[elem.func];

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DeviceService } from "./device.service";
+import { DeviceService } from './device.service';
 
 const StreamDeck = require( 'elgato-stream-deck' );
 
@@ -8,7 +8,8 @@ export class StreamDeckService extends DeviceService {
 
    device: any;
 
-   // We need this to remap button ids because the Elgato scans right to left, top to bottom. Normal sequence is left to right, top to bottom.
+   // We need this to remap button ids because the Elgato scans right to left, top to bottom.
+   // Normal sequence is left to right, top to bottom.
    buttonToStreamDeckButtonID = [
       4, 3, 2, 1, 0, 9, 8, 7, 6, 5, 14, 13, 12, 11, 10
    ];
