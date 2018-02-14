@@ -9,7 +9,7 @@ export class KeysenderService {
   constructor(
      public electronService: ElectronService
   ) {
-    this.ks = electronService.remote.require('node-key-sender');
+    this.ks = electronService.remote.require('robotjs');
   }
 
 }

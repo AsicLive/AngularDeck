@@ -72,6 +72,11 @@ span.button {
     color: white;
 }
 
+span.button:active {
+  -webkit-animation: ease-in;
+  transform: scale3d(1.1, 1.1, 1.1);
+}
+
 .button-load {
     background: #ca952e;
 }

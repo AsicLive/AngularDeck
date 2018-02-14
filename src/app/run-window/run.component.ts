@@ -8,6 +8,7 @@ import {ObsWebsocketService} from '../obs-websocket.service';
 import {Button} from '../button';
 import {TwitchService} from '../twitch.service';
 import {KeysenderService} from '../keysender.service';
+import {ArduinoService} from '../device_connectors/arduino.service';
 
 @Component({
   selector: 'app-run-pane',
@@ -32,33 +33,56 @@ export class RunComponent implements OnInit, OnDestroy {
               public obs: ObsWebsocketService,
               public ks: KeysenderService,
               public router: Router,
-              public renderer: Renderer2) {
+              public renderer: Renderer2,
+              public arduino: ArduinoService) {
     this.buttons = this.buttonService.getCurrentFolder();
     this.config = this.configService.getConfig();
   }
 
   ngOnInit() {
+    const that = this;
+
     if (this.config.channelName === '') {
       this.router.navigate(['./config']);
     }
     this.twitchService.connect();
+    this.arduino.connect();
+
+    this.arduino.device.on('ready', function() {
+      that.fillImages();
+    });
+
+    this.arduino.device.on('down', function (keyIndex) {
+      that.doAction(that.buttons[keyIndex - 1]);
+    });
   }
 
   ngOnDestroy() {
     this.twitchService.disconnect();
+    this.arduino.close();
   }
 
   startDeck() {
 
   }
 
-  doAction(button: Button, event) {
+  fillImages() {
+    const that = this;
+    this.buttons.forEach(function(elem, buttonID) {
+      that.arduino.setButtonImage(buttonID, elem.image);
+    });
+  }
+
+  doAction(button: Button, event = null) {
     const that = this;
 
-    const target = event.target || event.srcElement || event.currentTarget;
-    this.renderer.addClass(target.parentElement, 'clicked');
-    window.setTimeout(function() { that.renderer.removeClass(target.parentElement, 'clicked'); }, 300);
-    console.log(target);
+    if (event) {
+      const target = event.target || event.srcElement || event.currentTarget;
+      this.renderer.addClass(target.parentElement, 'clicked');
+      window.setTimeout(function () {
+        that.renderer.removeClass(target.parentElement, 'clicked');
+      }, 300);
+    }
 
     button.actions.forEach(function (elem, index) {
       const fn = that[elem.func];
@@ -126,51 +150,55 @@ export class RunComponent implements OnInit, OnDestroy {
   }
 
   obs_toggle_streaming(that, action) {
+    // TODO
 
   }
 
   obs_toggle_recording(that, action) {
+    // TODO
 
   }
 
   obs_toggle_mic(that, action) {
+    // TODO
 
   }
 
   obs_change_scene(that, action) {
-
+    that.obs.send('SetCurrentScene', {'scene-name': action.scene});
   }
 
   obs_toggle_source(that, action) {
+    // TODO
 
   }
 
   media_play_pause(that, action) {
-
+    that.ks.ks.keyTap('audio_play');
   }
 
   media_prev_track(that, action) {
-
+    that.ks.ks.keyTap('audio_prev');
   }
 
   media_next_track(that, action) {
-
+    that.ks.ks.keyTap('audio_next');
   }
 
   media_mute(that, action) {
-
+    that.ks.ks.keyTap('audio_mute');
   }
 
   media_stop(that, action) {
-
+    that.ks.ks.keyTap('audio_stop');
   }
 
   media_vol_up(that, action) {
-
+    that.ks.ks.keyTap('audio_vol_up');
   }
 
   media_vol_down(that, action) {
-
+    that.ks.ks.keyTap('audio_vol_down');
   }
 
   sys_hotkey(that, action) {

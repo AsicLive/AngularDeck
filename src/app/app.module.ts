@@ -22,6 +22,7 @@ import {ObsWebsocketService} from './obs-websocket.service';
 import {FilesysService} from './filesys.service';
 import {TwitchService} from './twitch.service';
 import {KeysenderService} from './keysender.service';
+import {ArduinoService} from './device_connectors/arduino.service';
 
 const appRoutes: Routes = [
   {path: 'config', component: ConfigComponent},
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
     ObsWebsocketService,
     FilesysService,
     TwitchService,
-    KeysenderService
+    KeysenderService,
+    ArduinoService
   ],
   bootstrap: [AppComponent]
 })

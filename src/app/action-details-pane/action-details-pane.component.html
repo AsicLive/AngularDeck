@@ -26,7 +26,7 @@
                <label>
                   Scene:
                   <select [(ngModel)]="action.scene">
-                     <option *ngFor="let scene of obs._sceneList" value="scene.name">{{scene.name}}</option>
+                     <option *ngFor="let scene of obs._sceneList" [value]="scene.name">{{scene.name}}</option>
                   </select>
                </label>
             </ng-template>
@@ -34,7 +34,7 @@
                <label>
                   Source:
                   <select [(ngModel)]="action.source">
-                     <option *ngFor="let source of obs._sourcesList" value="scene.name">{{source.name}}</option>
+                     <option *ngFor="let source of obs._sourcesList" [value]="source.name">{{source.name}}</option>
                   </select>
                </label>
             </ng-template>

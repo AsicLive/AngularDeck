@@ -126,6 +126,7 @@ export class ObsWebsocketService {
       Object.assign(payload, data);
     }
     this.ws.send4Direct(payload);
+    console.log('Payload: ', payload);
     this._messageIdList[parseInt(messageId.toString(), 10)] = command;
   }
 

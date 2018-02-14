@@ -28,7 +28,7 @@ li.button {
 }
 
 li.clicked {
-  overflow:visible;
+  overflow: visible;
   animation-duration: 300ms;
   animation-name: red-border;
   z-index: 100001;

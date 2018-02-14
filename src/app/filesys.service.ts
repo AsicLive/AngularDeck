@@ -26,7 +26,7 @@ export class FilesysService {
         this.dirSeparator = '/';
         break;
       case 'win32':
-        this.configDir = 'C:\\Users\\' + user + '\\AppData\\Local\\AngularDeck\\';
+        this.configDir = 'C:\\Users\\' + user + '\\AppData\\Roaming\\AngularDeck\\';
         this.dirSeparator = '\\';
         break;
     }
