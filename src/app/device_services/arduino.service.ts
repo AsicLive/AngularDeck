@@ -18,6 +18,8 @@ export class ArduinoService extends DeviceService {
   device;
   buffer;
 
+  connected = false;
+
   constructor(public electron: ElectronService) {
     super();
     this.device = new EventEmitter();
@@ -54,6 +56,7 @@ export class ArduinoService extends DeviceService {
                   that.device.emit('up', data);
                 }
               } else {
+                that.connected = true;
                 that.device.emit('ready');
               }
             });

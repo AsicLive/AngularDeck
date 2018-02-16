@@ -6,6 +6,8 @@ import {$WebSocket, WebSocketSendMode} from 'angular2-websocket/angular2-websock
 export class ObsWebsocketService {
   DEBUG = true;
 
+  connected = false;
+
   ws;
   _sceneList = null;
   _sourcesList = null;
@@ -73,6 +75,7 @@ export class ObsWebsocketService {
         break;
       case 'Authenticate':
         if (data.status !== 'error') {
+          this.connected = true;
           this._authorized = true;
           this.loadLists();
           this.debug('Connected to OBS! (Auth)');
