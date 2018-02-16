@@ -1,11 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Button} from '../button';
-import {ButtonService} from '../button.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Url} from 'url';
-import {ConfigurationService} from '../configuration.service';
+import {Button} from 'app/models';
+import {ButtonService, ConfigurationService, ObsWebsocketService} from 'app/services';
 import {ElectronService} from 'ngx-electron';
-import {ObsWebsocketService} from '../obs-websocket.service';
 
 @Component({
   selector: 'app-button-pane',

@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Button} from './button';
-import {ButtonType} from './button-type';
+import {Button, ButtonType} from 'app/models';
 import {FilesysService} from './filesys.service';
 import {ElectronService} from 'ngx-electron';
 
@@ -18,7 +17,7 @@ export class ButtonService {
 
     constructor(private filesys: FilesysService,
                 private electron: ElectronService) {
-        var fs = this.electron.remote.require('fs');
+        const fs = this.electron.remote.require('fs');
 
         try {
             this.buttonSets = JSON.parse(fs.readFileSync(this.filesys.getPath(this.FILE_NAME)));
@@ -28,7 +27,7 @@ export class ButtonService {
                     this.buttonSets.push([]);
                     for (let y = 0; y < 15; y++) {
                         this.buttonSets[x].push(new Button(x, y));
-                        if (y == 0 && x != 0) {
+                        if (y === 0 && x !== 0) {
                             this.buttonSets[x][y].type = ButtonType.folder;
                             this.buttonSets[x][y].image = 'back.png';
                         }
@@ -63,7 +62,7 @@ export class ButtonService {
     }
 
     public save() {
-        var fs = this.electron.remote.require('fs');
+        const fs = this.electron.remote.require('fs');
         try {
             fs.writeFileSync(this.filesys.getPath(this.FILE_NAME), JSON.stringify(this.buttonSets));
         } catch (e) {

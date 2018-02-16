@@ -11,11 +11,11 @@ import {AppComponent} from './app.component';
 import {ButtonComponent} from './components/panes/button-pane/button.component';
 import {ActionPaneComponent} from './components/panes/action-pane/action-pane.component';
 import {DetailsPaneComponent} from './components/panes/details-pane/details-pane.component';
-import {ConfigComponent} from './config-window/config.component';
-import {LayoutComponent} from './layout-window/layout.component';
-import {RunComponent} from './run-window/run.component';
-import {PageNotFoundComponent} from './page-not-found-window/page-not-found.component';
-import {ActionDetailsPaneComponent} from './action-details-pane/action-details-pane.component';
+import {ActionDetailsPaneComponent} from './components/panes/action-details-pane/action-details-pane.component';
+import {ConfigComponent} from './components/windows/config-window/config.component';
+import {LayoutComponent} from './components/windows/layout-window/layout.component';
+import {RunComponent} from './components/windows/run-window/run.component';
+import {PageNotFoundComponent} from './components/windows/page-not-found-window/page-not-found.component';
 
 import {ButtonService} from './services/button.service';
 import {ConfigurationService} from './services/configuration.service';

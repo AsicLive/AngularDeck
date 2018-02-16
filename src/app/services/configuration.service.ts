@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Configuration} from './configuration';
+import {Configuration} from 'app/models';
 import {FilesysService} from './filesys.service';
 import {ElectronService} from 'ngx-electron';
 

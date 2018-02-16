@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
-import {Button} from '../button';
-import {ButtonService} from '../button.service';
-import {ObsWebsocketService} from '../obs-websocket.service';
+import {Button} from 'app/models';
+import {ButtonService, ObsWebsocketService} from 'app/services';
 
 @Component({
   selector: 'app-action-details-pane',

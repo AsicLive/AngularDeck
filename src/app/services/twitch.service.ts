@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ConfigurationService} from './configuration.service';
-let tmi = require('tmi.js');
+const tmi = require('tmi.js');
 
 @Injectable()
 export class TwitchService {

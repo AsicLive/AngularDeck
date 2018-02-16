@@ -1,14 +1,9 @@
 import {Component, OnInit, OnDestroy, Renderer2} from '@angular/core';
-import {ButtonService} from '../button.service';
-import {Configuration} from '../configuration';
-import {ConfigurationService} from '../configuration.service';
 import {Router} from '@angular/router';
+import {Button, Configuration} from 'app/models';
+import {ArduinoService} from 'app/device_services';
+import {ButtonService, ConfigurationService, KeysenderService, ObsWebsocketService, TwitchService} from 'app/services';
 import {ElectronService} from 'ngx-electron';
-import {ObsWebsocketService} from '../obs-websocket.service';
-import {Button} from '../button';
-import {TwitchService} from '../twitch.service';
-import {KeysenderService} from '../keysender.service';
-import {ArduinoService} from '../device_connectors/arduino.service';
 
 @Component({
   selector: 'app-run-pane',

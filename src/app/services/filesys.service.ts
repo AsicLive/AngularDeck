@@ -21,7 +21,7 @@ export class FilesysService {
         this.dirSeparator = '/';
         break;
       case 'linux':
-        //TODO: Not sure where to store things on Linux
+        // TODO: Not sure where to store things on Linux
         this.configDir = '~/.config/AngularDeck/';
         this.dirSeparator = '/';
         break;

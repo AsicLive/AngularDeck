@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Button} from "../button";
+import {Button} from 'app/models';
 
 @Component({
   selector: 'app-layout',

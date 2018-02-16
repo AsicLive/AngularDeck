@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ConfigurationService} from '../configuration.service';
-import {Configuration} from '../configuration';
-import {ObsWebsocketService} from '../obs-websocket.service';
+import {ConfigurationService, ObsWebsocketService} from 'app/services';
+import {Configuration} from 'app/models';
 
 @Component({
   selector: 'app-config',

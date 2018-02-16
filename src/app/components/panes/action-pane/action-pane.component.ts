@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DECK_SET, MEDIA_SET, OBS_SET, SYS_SET, TWITCH_SET} from '../const-actions';
-import {Button} from '../button';
+import {DECK_SET, MEDIA_SET, OBS_SET, SYS_SET, TWITCH_SET} from 'app/constants';
+import {Button} from 'app/models';
 
 @Component({
     selector: 'app-action-pane',
