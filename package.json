@@ -41,7 +41,6 @@
     "jimp": "^0.2.28",
     "ng2-image-upload": "^1.1.0",
     "ngx-electron": "^1.0.4",
-    "node-key-sender": "^1.0.9",
     "robotjs": "^0.4.7",
     "rxjs": "^5.5.2",
     "serialport": "^6.0.5",

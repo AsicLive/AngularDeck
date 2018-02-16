@@ -59,3 +59,43 @@ h1 span {
     color: #00979d;
     font-family: 'Bitstream';
 }
+
+.toast-box {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin: 12px;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    clear: both;
+}
+
+.toast-message {
+    text-align: right;
+    border-radius: 4px;
+    border: 1px solid #385253;
+    box-shadow: 1px 1px 1px black;
+    margin: 6px;
+    max-width: 200px;
+    padding: 8px;
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    background: #328783;
+}
+
+.toast-message span {
+    text-align: left;
+    display: block;
+}
+
+.toast-message .button {
+    border-radius: 4px;
+    margin: 5px auto;
+    display: inline-block;
+    background: #156c37;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.toast-message .button:hover {
+    background: #1e994e;
+}

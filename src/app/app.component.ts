@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {Button} from './button';
-import {ObsWebsocketService} from './obs-websocket.service';
-import {ArduinoService} from './device_connectors/arduino.service';
+import {Button} from './models/button';
+import {ObsWebsocketService} from './services/obs-websocket.service';
+import {ArduinoService} from './device_services/arduino.service';
+import { ConfigurationService } from './services/configuration.service';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +14,23 @@ export class AppComponent {
   activeButton: Button;
   buttonSets: Button[][];
 
-  constructor(obs: ObsWebsocketService,
-              arduino: ArduinoService) {
+  obsConnected = false;
+  arduinoConnected = false;
+
+  constructor(public obs: ObsWebsocketService,
+              public arduino: ArduinoService,
+              public config: ConfigurationService) {
     this.buttonSets = [[]];
     this.activeButton = new Button(-1, -1);
-    arduino.connect();
+    this.connectArduino();
+    this.connectOBS();
+  }
+
+  connectOBS() {
+    this.obs.connect(this.config.getConfig().obsHost, this.config.getConfig().obsPass);
+  }
+
+  connectArduino() {
+    this.arduino.connect();
   }
 }
