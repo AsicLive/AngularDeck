@@ -105,11 +105,11 @@ export class RunComponent implements OnInit, OnDestroy {
   }
 
   deck_delay(that, action) {
-    that.delayed = true;
-    setTimeout(function () {
-      that.delayed = false;
-      that.continueAction(that);
-    }, +action.timeout);
+     that.delayed = true;
+     setTimeout(function () {
+        that.delayed = false;
+        that.continueAction(that);
+     }, +action.timeout);
   }
 
   deck_folder(that, action) {
