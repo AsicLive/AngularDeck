@@ -18,11 +18,11 @@ export class AppComponent {
   arduinoConnected = false;
 
   constructor(public obs: ObsWebsocketService,
-              public arduino: ArduinoService,
+              // public arduino: ArduinoService,
               public config: ConfigurationService) {
     this.buttonSets = [[]];
     this.activeButton = new Button(-1, -1);
-    this.connectArduino();
+    // this.connectArduino();
     this.connectOBS();
   }
 
@@ -31,6 +31,6 @@ export class AppComponent {
   }
 
   connectArduino() {
-    this.arduino.connect();
+    // this.arduino.connect();
   }
 }

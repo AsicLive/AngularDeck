@@ -24,6 +24,7 @@ import {FilesysService} from './services/filesys.service';
 import {TwitchService} from './services/twitch.service';
 import {KeysenderService} from './services/keysender.service';
 import {ArduinoService} from './device_services/arduino.service';
+import {ActionService} from './services';
 
 const appRoutes: Routes = [
   {path: 'config', component: ConfigComponent},
@@ -64,7 +65,8 @@ const appRoutes: Routes = [
     FilesysService,
     TwitchService,
     KeysenderService,
-    ArduinoService
+    ArduinoService,
+    ActionService
   ],
   bootstrap: [AppComponent]
 })

@@ -48,7 +48,7 @@ export class RunComponent implements OnInit, OnDestroy {
     });
 
     this.arduino.device.on('down', function (keyIndex) {
-      that.doAction(that.buttons[keyIndex - 1]);
+      // that.doAction(that.buttons[keyIndex - 1]);
     });
   }
 

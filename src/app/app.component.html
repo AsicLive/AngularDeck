@@ -13,10 +13,10 @@
       <span>OBS Connection not found. Please update your configuration and click connect.</span>
       <div (click)="connectOBS()" class="button">CONNECT</div>
    </div>
-   <div *ngIf="!arduino.connected" class="toast-message">
-      <span>An Arduino Connection was not found. Please plug in an arduino and click connect.</span>
-      <div (click)="connectArduino()" class="button">CONNECT</div>
-   </div>
+   <!--<div *ngIf="!arduino.connected" class="toast-message">-->
+      <!--<span>An Arduino Connection was not found. Please plug in an arduino and click connect.</span>-->
+      <!--<div (click)="connectArduino()" class="button">CONNECT</div>-->
+   <!--</div>-->
 </div>
 <div class="app-block">
    <router-outlet></router-outlet>
