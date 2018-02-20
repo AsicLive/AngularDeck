@@ -4,7 +4,7 @@
 
 Install node from `https://nodejs.org/en/download/`.
 
-RRun an administrator level powershell console and run the following commands in sequence:
+Run an administrator level powershell console and run the following commands in sequence:
 ```powershell
 npm install -g electron 
 npm install -g @angular/cli  
