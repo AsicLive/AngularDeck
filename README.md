@@ -4,6 +4,8 @@
 
 Install node from `https://nodejs.org/en/download/`.
 
+###Windows
+
 Run an administrator level powershell console and run the following commands in sequence:
 ```powershell
 npm install -g electron 
@@ -12,6 +14,10 @@ npm --add-python-to-path='true' --debug install --global windows-build-tools
 npm install -g electron-rebuild  
 npm install --save-dev  electron-rebuild
 ```
+
+###OSX
+
+Under Construction.
 
 ## Development server
 
