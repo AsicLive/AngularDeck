@@ -23,9 +23,9 @@ export class ActionDetailsPaneComponent implements OnInit {
   }
 
   getActionTemplate(action) {
-    console.log(action.func);
-    console.log(this.actionService.actions[action.func]);
-    console.log(this.actionService.actions);
+    // console.log(action.func);
+    // console.log(this.actionService.actions[action.func]);
+    // console.log(this.actionService.actions);
     return '';
     // return this.actionService.actions[action.func].getDetailsTemplate(action);
   }

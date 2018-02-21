@@ -9,6 +9,11 @@ export class ObsWebsocketService {
   connected = false;
 
   ws;
+
+  currentScene = null;
+  currentTransition = null;
+  activeSources = null;
+
   _sceneList = null;
   _sourcesList = null;
   _transitionList = null;
@@ -83,13 +88,53 @@ export class ObsWebsocketService {
           this.debug('Connection to OBS failed. Wrong password');
         }
         break;
+      /*
+          Events
+       */
+      case 'SwitchScenes':
+        break;
       case 'ScenesChanged':
         this.send('GetSceneList');
         break;
+       case 'SceneCollectionChanged':
+       case 'SceneCollectionListChanged':
+       case 'SwitchTransition':
+       case 'TransitionListChanged':
+       case 'TransitionDurationChanged':
+       case 'TransitionBegin':
+       case 'ProfileChanged':
+       case 'ProfileListChanged':
+       case 'StreamStarting':
+       case 'StreamStarted':
+       case 'StreamStopping':
+       case 'StreamStopped':
+       case 'StreamStatus':
+       case 'RecordingStarting':
+       case 'RecordingStarted':
+       case 'RecordingStopping':
+       case 'RecordingStopped':
+       case 'ReplayStarting':
+       case 'ReplayStarted':
+       case 'ReplayStopping':
+       case 'ReplayStopped':
+       case 'Exiting':
+       case 'Heartbeat':
+       case 'SourceOrderChanged':
+       case 'SceneItemAdded':
+       case 'SceneItemRemoved':
+       case 'SceneItemVisibilityChanged':
+       case 'PreviewSceneChanged':
+       case 'StudioModeSwitched':
+          break;
+      /*
+          Requests
+      */
       case 'GetSceneList':
+        this.currentScene = data['current-scene'];
         this._sceneList = data.scenes;
         break;
       case 'GetTranstionList':
+         this.currentTransition = data['current-transition'];
         this._transitionList = data.transitions;
         break;
       case 'GetSourcesList':
