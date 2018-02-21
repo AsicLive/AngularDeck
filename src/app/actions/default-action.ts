@@ -7,11 +7,11 @@ export class DefaultAction extends Action {
   func = '';
   category = ActionType.deck;
 
-  getDetailsTemplate(action) {
+  getDetailsTemplate = function(action) {
     return ``;
-  }
+  };
 
-  doAction(that, action) {
+  doAction = function(that, action) {
 
-  }
+  };
 }

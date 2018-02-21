@@ -55,6 +55,7 @@ export class RunComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.twitchService.disconnect();
     this.arduino.close();
+    this.arduino.device.removeAllListeners();
   }
 
   startDeck() {
@@ -197,6 +198,6 @@ export class RunComponent implements OnInit, OnDestroy {
   }
 
   sys_hotkey(that, action) {
-    that.ks.ks.sendCombination(['windows', 'r']);
+    // that.ks.ks.sendCombination(['windows', 'r']);
   }
 }
