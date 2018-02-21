@@ -1,7 +1,7 @@
 import {Action} from '../models/action';
 import {ActionType} from 'app/models';
 
-export class DeckFolder extends Action {
+export class MediaStop extends Action {
 
   name = '';
   func = '';
@@ -12,6 +12,6 @@ export class DeckFolder extends Action {
   };
 
   doAction = function(that, action) {
-    that.buttons = that.buttonService.openFolder(action.folder);
+    that.ks.ks.keyTap('audio_stop');
   };
 }

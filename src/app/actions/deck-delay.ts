@@ -7,18 +7,18 @@ export class DeckDelay extends Action {
   func = 'deck_delay';
   category = ActionType.deck;
 
-  getDetailsTemplate(action) {
+  getDetailsTemplate = function (action) {
     return `<label>
                   Timeout in ms:
                   <input [(ngModel)]='action.timeout'>
               </label>`;
-  }
+  };
 
-  doAction(that, action) {
+  doAction = function (that, action) {
     that.delayed = true;
     setTimeout(function () {
       that.delayed = false;
       that.continueAction(that);
     }, +action.timeout);
-  }
+  };
 }

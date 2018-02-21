@@ -21,6 +21,9 @@ export class ArduinoService extends DeviceService {
 
   connected = false;
 
+  isWritingBuffers = false;
+  pendingBuffers: any = [];
+
   constructor(public electron: ElectronService) {
     super();
     this.device = new EventEmitter();
@@ -50,17 +53,20 @@ export class ArduinoService extends DeviceService {
 
             parser.on('data', (data) => {
               console.log(data);
-              if (data !== 'ready') {
+              if (data === 'ready') {
+                that.connected = true;
+                that.device.emit('ready');
+              } else if (data === 'done') {
+                that.isWritingBuffers = false;
+                that.startWritingPendingBuffers();
+              } else {
                 if (data > 0) {
                   that.device.emit('down', data);
                 } else if (data < 0) {
                   that.device.emit('up', data);
+                } else {
+                  console.log('Error in Data: ', data);
                 }
-              } else if (data === 'ready') {
-                that.connected = true;
-                that.device.emit('ready');
-              } else {
-                that.device.emit('ready');
               }
             });
 
@@ -73,8 +79,6 @@ export class ArduinoService extends DeviceService {
               that.Arduino.close();
               process.exit(1);
             });
-
-            // Arduino.write('ROBOT PLEASE RESPOND\n');
           }
         });
       });
@@ -89,10 +93,7 @@ export class ArduinoService extends DeviceService {
   }
 
   setButtonImage(buttonID: number, imagePath: any) {
-    console.log('Set button image');
     const that = this;
-    // this.device.fillImageFromFile( this.streamDeckButton( buttonID ), imagePath );
-    // Fill the third button from the left in the first row with an image of the GitHub logo.
     const sharp = this.electron.remote.require('sharp'); // See http://sharp.dimens.io/en/stable/ for full docs on this great library!
     sharp(imagePath)
       .flatten() // Eliminate alpha channel, if any.
@@ -104,30 +105,10 @@ export class ArduinoService extends DeviceService {
         newBuffer.push(73);
         newBuffer.push(buttonID % 5);
         newBuffer.push(parseInt('' + (buttonID / 5), 10));
-        for (let i = 0; i < buffer.length; i ++) {
+        for (let i = 0; i < buffer.length; i++) {
           newBuffer.push(buffer[i]);
         }
         return that.fillImage(buttonID, newBuffer);
-        // const bit16buffer = [];
-        // bit16buffer.push(73);
-        // bit16buffer.push(buttonID % 5);
-        // bit16buffer.push(parseInt('' + (buttonID / 5), 10));
-        // for (let i = 0; i < buffer.length; i += 3) {
-        //   const r = parseInt('' + (((buffer[i] + 4) * 31) / 255), 10) << 11;
-        //   const g = parseInt('' + (((buffer[i + 1] + 2) * 63) / 255), 10) << 5;
-        //   const b = parseInt('' + (((buffer[i + 2] + 4) * 31) / 255), 10);
-        //   let bit16 = r | g | b;
-        //   if ( bit16 > 65535 ) {
-        //     bit16 = 65535;
-        //   }
-        //   let bitString = bit16.toString(2);
-        //   while (bitString.length < 16) {
-        //     bitString = '0' + bitString;
-        //   }
-        //   bit16buffer.push(parseInt(bitString.substr(0, 8), 2));
-        //   bit16buffer.push(parseInt(bitString.substr(8, 8), 2));
-        // }
-        // return that.fillImage(buttonID, bit16buffer);
       })
       .catch(err => {
         console.error(err);
@@ -136,7 +117,15 @@ export class ArduinoService extends DeviceService {
 
   fillImage(buttonID: number, imageBuffer: any) {
     if (imageBuffer !== null) {
-      this.Arduino.write(imageBuffer);
+      this.pendingBuffers.push(imageBuffer);
+      this.startWritingPendingBuffers();
+    }
+  }
+
+  startWritingPendingBuffers() {
+    if (this.isWritingBuffers === false && this.pendingBuffers.length > 0) {
+      this.isWritingBuffers = true;
+      this.Arduino.write(this.pendingBuffers.shift());
     }
   }
 
