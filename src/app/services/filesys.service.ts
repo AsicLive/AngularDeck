@@ -9,7 +9,7 @@ export class FilesysService {
 
   constructor(private electronService: ElectronService) {
     const os = this.electronService.remote.require('os');
-    const app = this.electronService.remote.require('app');
+    const app = this.electronService.remote.require('electron').app;
 
     this.configDir = app.getPath('userData');
 
@@ -27,13 +27,13 @@ export class FilesysService {
     }
   }
 
-  getPath(fileName, dir: any = false) {
+  getPath(fileName, dir = '') {
     const fs = this.electronService.remote.require('fs');
 
-    if (!dir) {
-      return this.configDir + fileName;
+    if (dir != '') {
+      return this.configDir + this.dirSeparator + fileName;
     } else {
-      const dirDir = this.configDir + dir + this.dirSeparator;
+      const dirDir = this.configDir + this.dirSeparator + dir.toString();
       if (!fs.existsSync(dirDir)) {
         fs.mkdirSync(dirDir);
       }

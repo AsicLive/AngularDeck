@@ -34,7 +34,10 @@ export class ObsWebsocketService {
   /*
    * Connects, Authenticates, and loads our default list values, Scenes and Sources.
    */
-  connect(url, password) {
+  connect(url = '', password) {
+     if (url == '') {
+        return;
+     }
     this.ws = null;
     this.ws = new $WebSocket('ws://' + url + ':4444');
     this.ws.mode = WebSocketSendMode.Observable;

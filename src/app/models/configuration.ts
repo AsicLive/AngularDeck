@@ -1,7 +1,7 @@
 export class Configuration {
-    public twitchChatKey: String = '';
-    public channelName: String = '';
-    public obsPass: String = '';
-    public obsHost: String = '';
-    public arduinoPort: String = '';
+    public twitchChatKey: string = '';
+    public channelName: string = '';
+    public obsPass: string = '';
+    public obsHost: string = '';
+    public arduinoPort: string = '';
 }
