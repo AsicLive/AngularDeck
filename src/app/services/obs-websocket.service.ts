@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as shajs from 'sha.js/sha256';
+import {EventEmitter} from "events";
 import {$WebSocket, WebSocketSendMode} from 'angular2-websocket/angular2-websocket';
 
 @Injectable()
@@ -9,6 +10,8 @@ export class ObsWebsocketService {
   connected = false;
 
   ws;
+
+  event: EventEmitter = new EventEmitter();
 
   currentScene = null;
   currentTransition = null;
@@ -92,12 +95,15 @@ export class ObsWebsocketService {
           Events
        */
       case 'SwitchScenes':
+         const lastScene = '' + this.currentScene;
+         this.currentScene = data['scene-name'];
+         this.event.emit('CurrentSceneUpdated', lastScene);
         break;
       case 'ScenesChanged':
-        this.send('GetSceneList');
-        break;
        case 'SceneCollectionChanged':
        case 'SceneCollectionListChanged':
+          this.send('GetSceneList');
+          break;
        case 'SwitchTransition':
        case 'TransitionListChanged':
        case 'TransitionDurationChanged':
@@ -130,15 +136,20 @@ export class ObsWebsocketService {
           Requests
       */
       case 'GetSceneList':
+         // Shallow clone of string.
         this.currentScene = data['current-scene'];
         this._sceneList = data.scenes;
         break;
-      case 'GetTranstionList':
+       case 'GetTransitionList':
+         // Shallow clone of string.
+         const lastTransition = '' + this.currentTransition;
          this.currentTransition = data['current-transition'];
-        this._transitionList = data.transitions;
+         this._transitionList = data.transitions;
+         this.event.emit('CurrentTransitionUpdated', lastTransition);
         break;
       case 'GetSourcesList':
         this._sourcesList = data.sources;
+         this.event.emit('SourcesUpdated');
         break;
     }
   }
