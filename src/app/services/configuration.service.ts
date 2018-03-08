@@ -15,8 +15,6 @@ export class ConfigurationService {
               private electron: ElectronService) {
     const fs = this.electron.remote.require('fs');
     this.config = new Configuration();
-    // this.config = require('config.json');
-    // this.save();
     try {
       this.config = JSON.parse(fs.readFileSync(this.filesys.getPath(this.FILE_NAME)));
     } catch (e) {

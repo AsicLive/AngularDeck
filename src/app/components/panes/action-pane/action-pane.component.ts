@@ -36,4 +36,21 @@ export class ActionPaneComponent implements OnInit {
     startDrag(action) {
 
     }
+
+
+   dropEventMouse(evt) {
+
+   }
+
+   dragEnter(evt) {
+
+   }
+
+   dragLeave(evt) {
+
+   }
+
+   dragoverMouse(evt) {
+
+   }
 }

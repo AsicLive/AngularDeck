@@ -1,4 +1,3 @@
-export * from './action.service';
 export * from './button.service';
 export * from './configuration.service';
 export * from './electron.service';

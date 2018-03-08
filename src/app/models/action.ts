@@ -5,7 +5,6 @@ export abstract class Action {
   func: string;
   category: ActionType;
 
-  abstract getDetailsTemplate;
-
-  abstract doAction;
+  abstract getDetailsTemplate: any;
+  abstract doAction: any;
 }

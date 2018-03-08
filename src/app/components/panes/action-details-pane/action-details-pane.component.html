@@ -14,56 +14,55 @@
                <i class="fa fa-trash"></i>
             </span>
          </label>
-         <div class=".action-data">
-            {{ getActionTemplate(action) }}
-            <!--&lt;!&ndash;  These are the function names from const-actions.ts  &ndash;&gt;-->
-            <!--<ng-template ngSwitchCase="twitch_custom_message">-->
-               <!--<label>-->
-                  <!--Message:-->
-                  <!--<input [(ngModel)]="action.message">-->
-               <!--</label>-->
-            <!--</ng-template>-->
-            <!--<ng-template ngSwitchCase="obs_change_scene">-->
-               <!--<label>-->
-                  <!--Scene:-->
-                  <!--<select [(ngModel)]="action.scene">-->
-                     <!--<option *ngFor="let scene of obs._sceneList" [value]="scene.name">{{scene.name}}</option>-->
-                  <!--</select>-->
-               <!--</label>-->
-            <!--</ng-template>-->
-            <!--<ng-template ngSwitchCase="obs_toggle_source">-->
-               <!--<label>-->
-                  <!--Source:-->
-                  <!--<select [(ngModel)]="action.source">-->
-                     <!--<option *ngFor="let source of obs._sourcesList" [value]="source.name">{{source.name}}</option>-->
-                  <!--</select>-->
-               <!--</label>-->
-            <!--</ng-template>-->
-            <!--<ng-template ngSwitchCase="deck_delay">-->
-               <!--<label>-->
-                  <!--Timeout in ms:-->
-                  <!--<input [(ngModel)]="action.timeout">-->
-               <!--</label>-->
-            <!--</ng-template>-->
-            <!--<ng-template ngSwitchCase="deck_toggle">-->
-               <!--<label>-->
-                  <!--Toggled Image:-->
-                  <!--&lt;!&ndash;<img-picker></img-picker>&ndash;&gt;-->
-               <!--</label>-->
-            <!--</ng-template>-->
-            <!--<ng-template ngSwitchCase="deck_toggle_group">-->
-               <!--<label>-->
-                  <!--Toggled Image:-->
-                  <!--&lt;!&ndash;<img-picker></img-picker>&ndash;&gt;-->
-               <!--</label>-->
-               <!--<label>-->
-                  <!--Button Group:-->
-                  <!--&lt;!&ndash;<group-picker></group-picker>&ndash;&gt;-->
-               <!--</label>-->
-            <!--</ng-template>-->
-            <!--<ng-template ngSwitchDefault>-->
+         <div class=".action-data" [ngSwitch]="action.func">
+            <!--  These are the function names from const-actions.ts  -->
+            <ng-template ngSwitchCase="twitch_custom_message">
+               <label>
+                  Message:
+                  <input [(ngModel)]="action.message">
+               </label>
+            </ng-template>
+            <ng-template ngSwitchCase="obs_change_scene">
+               <label>
+                  Scene:
+                  <select [(ngModel)]="action.scene">
+                     <option *ngFor="let scene of obs._sceneList" [value]="scene.name">{{scene.name}}</option>
+                  </select>
+               </label>
+            </ng-template>
+            <ng-template ngSwitchCase="obs_toggle_source">
+               <label>
+                  Source:
+                  <select [(ngModel)]="action.source">
+                     <option *ngFor="let source of obs._sourcesList" [value]="source.name">{{source.name}}</option>
+                  </select>
+               </label>
+            </ng-template>
+            <ng-template ngSwitchCase="deck_delay">
+               <label>
+                  Timeout in ms:
+                  <input [(ngModel)]="action.timeout">
+               </label>
+            </ng-template>
+            <ng-template ngSwitchCase="deck_toggle">
+               <label>
+                  Toggled Image:
+                  <!--<img-picker></img-picker>-->
+               </label>
+            </ng-template>
+            <ng-template ngSwitchCase="deck_toggle_group">
+               <label>
+                  Toggled Image:
+                  <!--<img-picker></img-picker>-->
+               </label>
+               <label>
+                  Button Group:
+                  <!--<group-picker></group-picker>-->
+               </label>
+            </ng-template>
+            <ng-template ngSwitchDefault>
 
-            <!--</ng-template>-->
+            </ng-template>
          </div>
       </div>
    </div>
