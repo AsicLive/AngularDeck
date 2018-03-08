@@ -7,6 +7,8 @@
 
 # dependencies
 /node_modules
+/forge/node_modules
+/forge/out
 
 # IDEs and editors
 /.idea
