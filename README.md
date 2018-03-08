@@ -1,4 +1,4 @@
-# Arduinodeck
+#AngularDeck
 
 ##Prerequisites
 
@@ -26,4 +26,5 @@ The app will automatically reload if you change any of the source files.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.  
+Use the `-prod --aot=false` flags for a production build.
