@@ -41,40 +41,4 @@ export class DetailsPaneComponent implements OnInit {
     this.activeButton.type = type;
   }
 
-  handleFileSelect(evt) {
-    const files = evt.target.files;
-    const file = files[0];
-    const nativeImage = this.electronService.nativeImage;
-    const fs = this.electronService.remote.require('fs');
-
-    if (files && file) {
-      const reader = new FileReader();
-
-      reader.onload = this._handleReaderLoaded.bind(this);
-
-      reader.readAsBinaryString(file);
-
-      console.log('File: ', file);
-
-      const fileName = ('0' + ((this.activeButton.set * 16) + this.activeButton.id).toString(16)).substr(-2) + '.png';
-      const filePath = this.fileSysService.getPath(fileName, 'icons');
-
-      let image = nativeImage.createFromPath(file.path);
-      image = image.resize({width: this.ICON_WIDTH, height: this.ICON_HEIGHT});
-      const pngBuffer = image.toPNG();
-
-      try {
-        console.log(filePath);
-        fs.writeFileSync(filePath, pngBuffer);
-      } catch (e) {
-        console.log(e);
-      }
-      this.activeButton.image = filePath;
-    }
-  }
-
-  _handleReaderLoaded(readerEvt) {
-    // const binaryString = readerEvt.target.result;
-    // this.activeButton.imageBase64 = 'data:image/bmp;base64,' + String(btoa(binaryString));
-  }
 }

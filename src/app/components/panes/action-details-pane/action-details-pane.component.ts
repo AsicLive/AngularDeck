@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 import {Button} from 'app/models';
 import {ButtonService, ObsWebsocketService} from 'app/services';
+import { Action } from "../../../models/action";
 
 @Component({
   selector: 'app-action-details-pane',
@@ -22,7 +23,9 @@ export class ActionDetailsPaneComponent implements OnInit {
   }
 
   addDropItem(evt) {
-    this.activeButton.actions.push(JSON.parse(JSON.stringify(evt)));
+    if (evt instanceof Action) {
+        this.activeButton.actions.push(JSON.parse(JSON.stringify(evt)));
+     }
   }
 
   dropEventMouse(evt) {

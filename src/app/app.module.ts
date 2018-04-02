@@ -13,6 +13,7 @@ import {ActionPaneComponent} from './components/panes/action-pane/action-pane.co
 import {DetailsPaneComponent} from './components/panes/details-pane/details-pane.component';
 import {ActionDetailsPaneComponent} from './components/panes/action-details-pane/action-details-pane.component';
 import {ConfigComponent} from './components/windows/config-window/config.component';
+import { ImagePaneComponent } from './components/panes/image-pane/image-pane.component';
 import {LayoutComponent} from './components/windows/layout-window/layout.component';
 import {RunComponent} from './components/windows/run-window/run.component';
 import {PageNotFoundComponent} from './components/windows/page-not-found-window/page-not-found.component';
@@ -24,7 +25,7 @@ import {FilesysService} from './services/filesys.service';
 import {TwitchService} from './services/twitch.service';
 import {KeysenderService} from './services/keysender.service';
 import {ArduinoService} from './device_services/arduino.service';
-import { ImagePaneComponent } from './image-pane/image-pane.component';
+import { ImageLibraryService } from "./services/image-library.service";
 
 const appRoutes: Routes = [
   {path: 'config', component: ConfigComponent},
@@ -66,7 +67,8 @@ const appRoutes: Routes = [
     FilesysService,
     TwitchService,
     KeysenderService,
-    ArduinoService
+    ArduinoService,
+    ImageLibraryService
   ],
   bootstrap: [AppComponent]
 })

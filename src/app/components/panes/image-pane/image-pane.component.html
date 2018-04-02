@@ -1,3 +1,35 @@
-<p>
-  image-pane works!
-</p>
+<div class="imagePane">
+   <span class="listTitle">Image Library</span>
+   <ul>
+      <li *ngFor="let image of images"
+          class="draggable"
+          [class.active]="activeImage == image"
+          (click)="updateImage(image)"
+          [class.selected]=""
+          [dragDirective]='image'
+          [dragHightlight]="'highlight'"
+          (releaseDrop)="releaseDrop($event)"
+          (startDrag)="startDrag(image)">
+         <img *ngIf="image.default_path != '/assets/img/missing.png'" src="file:///{{ image.default_path }}" class="lib-image"/>
+         <img *ngIf="image.default_path == '/assets/img/missing.png'" src="/assets/img/missing.png" class="lib-image"/>
+         <img *ngIf="image.toggled_path != ''" src="file:///{{ image.toggled_path }}" class="toggle-image" />
+      </li>
+   </ul>
+   <div *ngIf="activeImage != null" class="image-details">
+    <span>
+      Name:
+      <input [(ngModel)]="activeImage.image_name"/>
+    </span>
+      <span class="defaultImage">
+      Default:
+      <input type="file" #filePickerDefault (change)="handleFileSelect($event, 'default')" accept=".bmp,.png,.jpg">
+    </span>
+      <span class="toggledImage">
+      Toggled:
+      <input type="file" #filePickerToggled (change)="handleFileSelect($event, 'toggled')" accept=".bmp,.png,.jpg">
+    </span>
+   </div>
+   <button (click)="newImage()">New Image</button>
+   <button *ngIf="activeImage != null" (click)="removeImage(activeImage)">Remove Image</button>
+   <span>(Drag and drop)</span>
+</div>

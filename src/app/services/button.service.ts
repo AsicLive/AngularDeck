@@ -29,7 +29,7 @@ export class ButtonService {
                         this.buttonSets[x].push(new Button(x, y));
                         if (y === 0 && x !== 0) {
                             this.buttonSets[x][y].type = ButtonType.folder;
-                            this.buttonSets[x][y].image = 'back.png';
+                            this.buttonSets[x][y].image.default_path = '/assets/img/back.png';
                         }
                     }
                 }

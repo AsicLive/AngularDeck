@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 .app-block {
-    max-width: 640px;
+    max-width: 920px;
+    min-width: 920px;
     display: block;
     margin: 0 auto;
 }

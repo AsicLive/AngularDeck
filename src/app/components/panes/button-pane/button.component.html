@@ -7,9 +7,16 @@
    </label>
    <ul class="buttonSet">
       <li *ngFor="let button of buttonSets[activeFolder]" (click)="selectButton(button)" class="button"
-          [class.selected]="button === selectedButton">
-         <img *ngIf="button.image != 'missing.png'" width="60" src="file:///{{ button.image }}"/>
-         <img *ngIf="button.image == 'missing.png'" width="60" src="assets/img/missing.png"/>
+          [class.selected]="button === selectedButton"
+          droppable
+          dropDirective
+          (dropEvent)="addDropItem(button, $event)"
+          (dropEventMouse)="dropEventMouse($event)"
+          (dragenterEvent)="dragEnter($event)"
+          [dropHighlight]="'highlight'"
+          (dragoverMouseEvent)="dragoverMouse($event)">
+         <img *ngIf="button.image.default_path != null" width="60" src="file:///{{ button.image.default_path }}"/>
+         <img *ngIf="button.image.default_path == null" width="60" src="/assets/img/missing.png"/>
          <img class="badge button-{{button.type}}"/>
       </li>
    </ul>

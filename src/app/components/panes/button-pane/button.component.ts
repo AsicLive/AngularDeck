@@ -99,4 +99,24 @@ export class ButtonComponent implements OnInit {
       this.downloadLayout = uri;
     }
   }
+
+   addDropItem(button: Button, evt) {
+      button.image = JSON.parse(JSON.stringify(evt));
+   }
+
+   dropEventMouse(evt) {
+
+   }
+
+   dragEnter(evt) {
+
+   }
+
+   dragLeave(evt) {
+
+   }
+
+   dragoverMouse(evt) {
+
+   }
 }
